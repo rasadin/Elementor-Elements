@@ -1,0 +1,260 @@
+<?php
+namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
+
+class Widget_SC_Page_heading extends Widget_Base {
+
+	public function get_name() {
+		return 'sharecare-video-page-heading';
+	}
+
+	public function get_title() {
+		return esc_html__( 'Video Page Heading', 'sharecare-core' );
+	}
+
+	public function get_script_depends() {
+        return [
+            'sharecare-public'
+        ];
+    }
+
+	public function get_icon() {
+		return 'fa fa-header';
+	}
+
+    public function get_categories() {
+		return [ 'sharecare-for-elementor' ];
+	}
+
+	
+	protected function _register_controls() {
+        /**
+         * Content Settings
+         */
+		$this->start_controls_section(
+			'content_section',
+			[
+				'label' => __( 'Content Settings', 'sharecare-core' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+        $this->add_control(
+			'page_title_span_1',
+			[
+				'label' => __( 'Title Span 1', 'sharecare-core' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Default title', 'sharecare-core' ),
+				'placeholder' => __( 'Type your title here', 'sharecare-core' ),
+			]
+        );
+
+        $this->add_control(
+			'page_title_span_2',
+			[
+				'label' => __( 'Title Span 2', 'sharecare-core' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Default title', 'sharecare-core' ),
+				'placeholder' => __( 'Type your title here', 'sharecare-core' ),
+			]
+        );
+
+        $this->add_control(
+			'youtube_video_url_id',
+			[
+				'label' => __( 'YouTube Video URL ID', 'sharecare-core' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				// 'default' => __( 'Default title', 'sharecare-core' ),
+				'placeholder' => __( 'Enter Video Id Here. Ex: URL: https://www.youtube.com/watch?v=FsAfZxyw3r0 ID:FsAfZxyw3r0  ', 'sharecare-core' ),
+			]
+        );
+
+    	$this->end_controls_section();
+	
+		/**
+		 * Style Tab
+		 */
+		$this->style_tab();
+    }
+	private function style_tab() {}
+	protected function render() {
+	$webalive = $this->get_settings_for_display();
+	    $this->add_render_attribute(
+			'mmvc_page_heading_options',
+			[
+				'id' => 'sharecare-page-heading-'.$this->get_id(),
+			]
+		);
+    ?>
+        <!-- Add Markup Starts -->
+<div class="banner-sectiom">
+    <div class="vimeo-wrapper">
+        <div class="videobg">
+            <div class="videobg-width">
+                <div class="videobg-aspect">
+                    <div class="videobg-make-height">
+                        <div class="videobg-hide-controls">
+                            <!-- <iframe id="" src="https://player.vimeo.com/video/297021934?background=1&amp;autoplay=1&amp;loop=1&amp;portrait=0&amp;muted=1&amp;autopause=0&amp;byline=0&amp;title=0" frameborder="0" allow="autoplay; fullscreen" webkitallowfullscreen="" mozallowfullscreen="" __idm_id__="185493505"></iframe> -->
+                        <iframe src="http://www.youtube.com/embed/O0SVgFHQZMI?autoplay=1&cc_load_policy=1" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="caption">
+        <h1><span>Specialist port</span>
+        <span>and coastal engineers</span></h1>
+    </div>
+</div>
+
+
+<style>
+    .banner-sectiom {
+    position: relative;
+    height: 500px;
+    }
+
+    .vimeo-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    }
+
+
+    /* Video background */
+
+    .videobg {
+    position: relative;
+    width: 100%; /* Set video container element width here */
+    height: 100%; /* Set video container element height here */
+    overflow: hidden;
+    background: #111; /* bg color, if video is not high enough */
+    }
+
+    /* horizontally center the video */
+    .videobg-width {
+    position: absolute;
+    width: 100%; /* Change width value to cover more area*/
+    height: 100%;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    }
+
+    /* set video aspect ratio and vertically center */
+    .videobg-aspect {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    top: -9999px;
+    bottom: -9999px;
+    margin: auto;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    overflow: hidden;
+
+    }
+
+    .videobg-make-height {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    }
+
+    .videobg-hide-controls {
+    box-sizing: content-box;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    /* Vimeo timeline and play button are ~55px high */
+    padding: 55px 97.7777px; /* 16:9 ratio */
+    top: -55px; 
+    left: -97.7777px; /* 16:9 ratio */
+    }
+
+    .videobg iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 0 none;
+    }
+
+    .banner-sectiom .caption {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    left: 0;
+    right: 0;
+    max-width: 1170px;
+    margin: 0 auto;
+    }
+
+    .banner-sectiom .caption h1 {
+    line-height: 68px;
+    font-size: 60px;
+    letter-spacing: -4px;
+    color: #fff;
+    margin: 0 0 10px 0;
+    max-width: 600px;
+    }
+
+    .banner-sectiom .caption h1 span {
+    padding: 0 20px;
+    background: rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    margin: 3px 0;
+    }
+    .banner-sectiom iframe {
+    width: 140vw;
+    height: 140vw;
+    min-height: 16.9vh;
+    min-width: 16.9vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    }
+</style>
+
+<script>
+    var timeoutId;
+    var $videoBgAspect = $(".videobg-aspect");
+    var $videoBgWidth = $(".videobg-width");
+    var videoAspect = $videoBgAspect.outerHeight() / $videoBgAspect.outerWidth();
+
+    function videobgEnlarge() {
+    console.log('resize');
+    windowAspect = ($(window).height() / $(window).width());
+    if (windowAspect > videoAspect) {
+        $videoBgWidth.width((windowAspect / videoAspect) * 100 + '%');
+    } else {
+        $videoBgWidth.width(100 + "%")
+    }
+    }
+
+    $(window).resize(function() {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(videobgEnlarge, 100);
+    });
+
+    $(function() {
+    videobgEnlarge();
+    });
+</script>
+        <!-- Add Markup Ends -->
+	<?php
+	}
+	protected function content_template() {}
+}
+
+
+
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_SC_Page_heading() );
