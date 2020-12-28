@@ -95,7 +95,7 @@ class Widget_SC_Page_heading extends Widget_Base {
                     <div class="videobg-make-height">
                         <div class="videobg-hide-controls">
                             <!-- <iframe id="" src="https://player.vimeo.com/video/297021934?background=1&amp;autoplay=1&amp;loop=1&amp;portrait=0&amp;muted=1&amp;autopause=0&amp;byline=0&amp;title=0" frameborder="0" allow="autoplay; fullscreen" webkitallowfullscreen="" mozallowfullscreen="" __idm_id__="185493505"></iframe> -->
-                        <iframe src="http://www.youtube.com/embed/O0SVgFHQZMI?autoplay=1&cc_load_policy=1" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="http://www.youtube.com/embed/<?php echo $webalive['youtube_video_url_id'] ?>?autoplay=1&cc_load_policy=1" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -103,8 +103,8 @@ class Widget_SC_Page_heading extends Widget_Base {
         </div>
     </div>
     <div class="caption">
-        <h1><span>Specialist port</span>
-        <span>and coastal engineers</span></h1>
+        <h1><span><?php echo $webalive['page_title_span_1'] ?></span>
+        <span><?php echo $webalive['page_title_span_2'] ?></span></h1>
     </div>
 </div>
 
