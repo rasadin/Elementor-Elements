@@ -144,7 +144,7 @@ class Widget_Mmvc_Hero_Carousel_Logo extends Widget_Base {
 							<!-- <input type="text" class="copyemail-value" value="<?php //echo $slide['discription']; ?>" id="myInput"> -->
 							
 							<div id="<?php echo $uni; ?>"><?php echo $slide['discription']; ?></div>
-							<button class="copyemailbt" onclick="copyTextFromElement('<?php echo $uni ?>')">Copy Email</button>		
+							<button class="copyemailbt" id="<?php echo $uni.'shb'; ?>" onclick="copyTextFromElement('<?php echo $uni ?>')">Copy Email</button>		
 							<!-- <a href="#"><?php //echo $slide['discription']; ?></a> -->
 							<!-- <a href="" class="copyemailbt">Copy Email</a> -->
 						</div>
@@ -164,6 +164,8 @@ class Widget_Mmvc_Hero_Carousel_Logo extends Widget_Base {
 <script>
 	//If you want to copyText from Element
 	function copyTextFromElement(elementID) {
+		showAlert(elementID);
+
 	let element = document.getElementById(elementID); //select the element
 	console.log(element);
 	let elementText = element.textContent; //get the text content from the element
@@ -174,8 +176,14 @@ class Widget_Mmvc_Hero_Carousel_Logo extends Widget_Base {
 	// and pass the string to copied as the argument.
 	function copyText(text) {
 	navigator.clipboard.writeText(text);
-	alert('Copied: ' + text);
+	// alert('Copied: ' + text);
 	}
+
+	function showAlert(elementID) {
+		let new_id = elementID+'shb';
+		document.getElementById(new_id).textContent = 'COPIED!!';
+	}
+
 </script>
 	<?php
 	}
